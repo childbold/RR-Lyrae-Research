@@ -1,2 +1,7 @@
 # RR-Lyrae-Research
 Curve fitting analysis for candidates of a RR Lyrae - binary star system
+
+This was my final addition to an ongoing research project at Grove City College to test the binarity of RR Lyrae stars.
+
+## Theoretical Model
+RR Lyrae are variable stars that having pulsating brightness levels on the order of a few hours to a few days. Binary systems consist of two stars that orbit around each other with a shared center of mass and whose orbits can have period from mere minutes to hundreds of years. In the case of this research, we primarily were focused on binary systems with periods estimated on the order of 10-100 years. There have been confirmed cases of binary systems in which one of the stars is an RR Lyrae. These case have been observed using the Light Travel Time Effect (LiTE) in which the times in which the RR Lyrae reaches peak brightness, also refered to as times of maxima, are recorded over a period of a few years. If the RR Lyrae is a member of a binary system, then when it is in the apogee of its orbit relative to Earth, the time it takes the light to reach us will be longer than when it is at its perigee. We can plot these time of maxima and see a sinusoidal curve as the star completes one orbit. If we can fit an equation to this curve, we can extract the period of this binary system and extrapolate this to other characteristics of the stars such as masss and luminosity.
