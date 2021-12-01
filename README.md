@@ -5,3 +5,29 @@ This was my final addition to an ongoing research project at Grove City College 
 
 ## Theoretical Model
 RR Lyrae are variable stars that having pulsating brightness levels on the order of a few hours to a few days. Binary systems consist of two stars that orbit around each other with a shared center of mass and whose orbits can have period from mere minutes to hundreds of years. In the case of this research, we primarily were focused on binary systems with periods estimated on the order of 10-100 years. There have been confirmed cases of binary systems in which one of the stars is an RR Lyrae. These case have been observed using the Light Travel Time Effect (LiTE) in which the times in which the RR Lyrae reaches peak brightness, also refered to as times of maxima, are recorded over a period of a few years. If the RR Lyrae is a member of a binary system, then when it is in the apogee of its orbit relative to Earth, the time it takes the light to reach us will be longer than when it is at its perigee. We can plot these time of maxima and see a sinusoidal curve as the star completes one orbit. If we can fit an equation to this curve, we can extract the period of this binary system and extrapolate this to other characteristics of the stars such as masss and luminosity.
+
+## Mathematical Approach
+Research has been done in this field prior and is referenced in the papers section of this repository. Specifically, the paper written by *J.-L. Li, et. all*, describes this curve of light maxima with the equation below. 
+
+O - C = &Delta;T<sub>0</sub> + &Delta;P<sub>0</sub> * E + <sup>&beta;</sup>&frasl;<sub>2</sub> E<sup>2</sup> + &tau;
+
+The goal of our research was to primarily find a method to fit the curve from data to this equation, henceforth referred to as the LiTE equation. Being as this is the summary for the code and not a complete research paper, users wishing to gain a greater understanding of the physics behind this phenomenon may reference the aforementioned papers for additional information.
+
+## Curve Fitting
+The LiTE equation (including further extrapolations) contains seven variables that must be solved to generate a perfect fit. These seven variables have been broken into three categories for simplicity of explanation. They are as follows:
+1. The linear portion
+2. The parabolic portion
+3. The binary portion
+
+The **linear portion** contains the variables &Delta;T<sub>0</sub> = and &Delta;P<sub>0</sub> which are the inital epoch of the data sample (can arbitraily set to zero) and the pulsation period of the variable star. These two dominate the data initially and cause the O-C diagram (observed data minus calculated) to take on a form similar to
+O - C = &Delta;P<sub>0</sub>E + &Delta;T<sub>0</sub>. 
+
+![image](https://user-images.githubusercontent.com/38231105/144331624-67a7af48-1e86-4360-8fbb-e92014aac2d3.png)
+
+As you may guess, a simple curve fitting algorithm method can be used to find these two variables. The find these values, we implemented a least-squares method to solve. More information on this type of curve-fitting method is widely available. <a href=https://en.wikipedia.org/wiki/Least_squares>(wiki link)</a>
+
+Once the initial two values are calculated, we subtracted them from the data, as the term observed-calculated infers, and are presented with a filterd data results that looks like this.
+
+![image](https://user-images.githubusercontent.com/38231105/144332174-406f7b5f-776f-4acf-a818-f068abd42149.png)
+
+This is what we refer to as the **parabolic portion**. Though it is not as easily visible as the linearity of the inital data was, this data does have a slight positve curvature overall which can be modeled in the form &beta;E<sup>2</sup> + A E + C where &beta; is the same as in the LiTE equation, E is the epoch, and the rest are extraneous variables required to generate a basic parabola. This portion too was easily solved using the least-squares method and &beta; was solved for.
