@@ -46,5 +46,5 @@ RBFopt shrinks the possible solution space but performs more complex steps to ap
 By the end of the semester, we still had not created a successful implementation of RBFopt and I passed down the project to an underclassman who is carrying on the project now. The next approaches I suggested were to explore other mathematical models that could represent the LiTE curves. So, while this code is ultimately incomplete, it does demonstrate a systematic approach to breaking down an equation with a large solution space and using different methods to appoximate solutions to a curve.
 
 
-## Additional Notes on code and data
+## Additional notes on code and data
 The data we used originated from the <a href=http://rr-lyr.irap.omp.eu/dbrr/rrdb-V2.0_08.3.php?XX+And&>GEOS RR Lyrae database</a>. A porttion of my time was spent using the <a href=https://pandas.pydata.org>pandas library</a> and Microsoft Excel to clean the data from this database. I also utilized <a href=https://matplotlib.org>matplotlib</a> to graph our data and the curves that we generated.
