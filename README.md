@@ -14,7 +14,7 @@ O - C = &Delta;T<sub>0</sub> + &Delta;P<sub>0</sub> * E + <sup>&beta;</sup>&fras
 The goal of our research was to primarily find a method to fit the curve from data to this equation, henceforth referred to as the LiTE equation. Being as this is the summary for the code and not a complete research paper, users wishing to gain a greater understanding of the physics behind this phenomenon may reference the aforementioned papers for additional information.
 
 ## Curve Fitting
-The LiTE equation (including further extrapolations) contains seven variables that must be solved to generate a perfect fit. These seven variables have been broken into three categories for simplicity of explanation. They are as follows:
+The LiTE equation (including further extrapolations) contains seven variables that must be solved to generate a perfect fit. When solving for particular variables, we compared our calculated results with those calculated in *J.-L. Li, et. all*. These seven variables have been broken into three categories for simplicity of explanation. They are as follows:
 1. The linear portion
 2. The parabolic portion
 3. The binary portion
@@ -31,3 +31,13 @@ Once the initial two values are calculated, we subtracted them from the data, as
 ![image](https://user-images.githubusercontent.com/38231105/144332174-406f7b5f-776f-4acf-a818-f068abd42149.png)
 
 This is what we refer to as the **parabolic portion**. Though it is not as easily visible as the linearity of the inital data was, this data does have a slight positve curvature overall which can be modeled in the form &beta;E<sup>2</sup> + A E + C where &beta; is the same as in the LiTE equation, E is the epoch, and the rest are extraneous variables required to generate a basic parabola. This portion too was easily solved using the least-squares method and &beta; was solved for.
+
+The **binary portion** contains the remaining four variables and was the primary hurdle of this research. Leaving off the linear and parabolic portions of the data, the O - C diagram looks like this.
+
+![image](https://user-images.githubusercontent.com/38231105/144333497-20faa85d-0606-4f0c-99cc-f7fbedf06642.png)
+
+As indicated by the blue line, this data takes a sinusoidal form that could be entirely a result of the RR Lyrae being one member of a binary system. The equation for this portion of the graph, however, is not a simple sinusoid, but rather is defined as follows.
+
+&tau; = A\[&radic;(1-e<sup>2</sup>) sinE<sup>\*</sup> cos&omega; + cosE<sup>\*</sup> sin&omega;\]
+
+Because this equation has 4 variables we need to solve for, the solution space is much larger than before. We initally attempted a least-squares method as with the other two portions, but this did not yield the results that were consistent with *J.-L. Li, et. all.* Instead, we began to use a <a href=https://en.wikipedia.org/wiki/Radial_basis_function>radial basis function optimization</a> algorithm. To approximate our results.
